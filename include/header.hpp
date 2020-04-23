@@ -18,13 +18,22 @@
 #include <string>
 #include <queue>
 #include <thread>
+#include <vector>
 
 using tcp = boost::asio::ip::tcp;
 namespace ssl = boost::asio::ssl;
 namespace http = boost::beast::http;
 namespace po = boost::program_options;
 
-using namespace std;
+using std::string;
+using std::queue;
+using std::vector;
+using std::thread;
+using std::cout;
+using std::endl;
+using std::mutex;
+using std::atomic_int;
+using std::atomic_bool;
 
 
 struct address
