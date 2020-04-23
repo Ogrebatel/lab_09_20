@@ -82,7 +82,7 @@ public:
     }
 
     void producers_loop(unsigned network_threads, unsigned depth) {
-        for (int i = 0; i < depth; ++i)
+        for (unsigned i = 0; i < depth; ++i)
         {
             while (!links_to_download.empty())
             {
@@ -304,9 +304,9 @@ private:
     bool add_link_for_search(const string &link)
     {
         history_mutex.lock();
-        auto check = std::find(links_history.begin(),
+        auto _check = std::find(links_history.begin(),
                 links_history.end(), link);
-        if (check == links_history.end()){
+        if (_check == links_history.end()){
             links_history.push_back(link);
             history_mutex.unlock();
 
@@ -322,9 +322,9 @@ private:
 
     bool add_img_to_output(const string &link) {
         output_mutex.lock();
-        auto check = std::find(output.begin(),
+        auto _check = std::find(output.begin(),
                 output.end(), link);
-        if (check == output.end()) {
+        if (_check == output.end()) {
             output.push_back(link);
             output_mutex.unlock();
             return true;
@@ -364,7 +364,7 @@ private:
     mutex output_mutex;
     mutex to_search_images_mutex;
 
-    atomic_int check = 0;
+    atomic_uint check = 0;
 
     atomic_bool end_network = false;
 };
