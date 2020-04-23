@@ -55,7 +55,6 @@ struct task{
 
 class crawler{
 public:
-
     void start(const string &link, unsigned depth,
             unsigned network_threads, unsigned parser_threads,
             const string &dir)
@@ -101,8 +100,7 @@ public:
             {
                 future_storing.swap(links_to_download);
                 check = 0;
-            }
-            else while(check != 0){}
+            } else while (check != 0){}
         }
         end_network = true;
     }
@@ -138,7 +136,6 @@ public:
             to_search_images_mutex.lock();
             to_search_images.emplace(ending, addr);
             to_search_images_mutex.unlock();
-
         }
         catch (std::exception const& e)
         {
@@ -177,7 +174,7 @@ public:
         {
             string link = create_link(sth, addr);
             if (link == "0") return;
-            if(!add_link_for_search(link)) return;
+            if (!add_link_for_search(link)) return;
         }
 
         GumboVector* children = &node->v.element.children;
@@ -200,7 +197,7 @@ public:
         {
             string img = create_img(sth, page.addr);
             if (img == "0") return;
-            if(add_img_to_output(img))
+            if (add_img_to_output(img))
                 BOOST_LOG_TRIVIAL(trace) << img << endl;
         }
         GumboVector* children = &node->v.element.children;
@@ -215,7 +212,7 @@ public:
 private:
     string get_port_from_link(const string &request)
     {
-        return (request.find("https")==0)? "443" : "80";
+        return (request.find("https") == 0)? "443" : "80";
     }
     string get_host_from_link(const string &request)
     {
@@ -233,8 +230,7 @@ private:
         string tmp(sth->value);
         if (tmp.find("http") == 0){
             return tmp;
-        }
-        else if(tmp.find("//")==0) {
+        } else if (tmp.find("//") == 0) {
             if(link.port == "443") tmp = "https:" + tmp;
             else tmp = "http:" + tmp;
             return tmp;
@@ -250,13 +246,12 @@ private:
         string tmp(sth->value);
         if (tmp.find("http") == 0){
             return tmp;
-        }
-        else if(tmp.find("//")==0) {
-            if(link.port == "443") tmp = "https:" + tmp;
+        } else if (tmp.find("//") == 0) {
+            if (link.port == "443") tmp = "https:" + tmp;
             else tmp = "http:" + tmp;
             return tmp;
 
-        } else if (tmp.find("/")==0){
+        } else if (tmp.find("/") == 0){
             if (link.port == "443") tmp = "https://" + link.host + tmp;
             else tmp = "http://" + link.host + tmp;
             return tmp;
@@ -266,8 +261,8 @@ private:
 
     string download_page(const address &addr){
         load_root_certificates(ctx);
-        tcp::resolver resolver{ ioc };
-        ssl::stream<tcp::socket> stream{ ioc, ctx };
+        tcp::resolver resolver{ioc};
+        ssl::stream<tcp::socket> stream{ioc, ctx};
 
         auto const results = resolver.resolve(addr.host, addr.port);
         boost::asio::connect(stream.next_layer(),

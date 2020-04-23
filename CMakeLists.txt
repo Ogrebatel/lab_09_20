@@ -33,6 +33,8 @@ hunter_add_package(OpenSSL)
 find_package(OpenSSL REQUIRED)
 hunter_add_package(Boost COMPONENTS program_options)
 find_package(Boost REQUIRED COMPONENTS program_options)
+hunter_add_package(gumbo)
+find_package(gumbo CONFIG REQUIRED)
 
 # TODO: change template word to project name and delete this comment
 add_library(template STATIC
