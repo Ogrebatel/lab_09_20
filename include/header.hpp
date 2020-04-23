@@ -100,7 +100,8 @@ public:
             {
                 future_storing.swap(links_to_download);
                 check = 0;
-            } else while (check != 0){}
+            } else 
+                while (check != 0){}
         }
         end_network = true;
     }
@@ -231,13 +232,15 @@ private:
         if (tmp.find("http") == 0){
             return tmp;
         } else if (tmp.find("//") == 0) {
-            if(link.port == "443") tmp = "https:" + tmp;
-            else tmp = "http:" + tmp;
+            if (link.port == "443") tmp = "https:" + tmp;
+            else 
+               tmp = "http:" + tmp;
             return tmp;
 
-        } else if (tmp.find("/")==0){
+        } else if (tmp.find("/") == 0){
             if (link.port == "443") tmp = "https://" + link.host + tmp;
-            else tmp = "http://" + link.host + tmp;
+            else 
+                tmp = "http://" + link.host + tmp;
             return tmp;
         }
         return "0";
@@ -248,12 +251,14 @@ private:
             return tmp;
         } else if (tmp.find("//") == 0) {
             if (link.port == "443") tmp = "https:" + tmp;
-            else tmp = "http:" + tmp;
+            else 
+                tmp = "http:" + tmp;
             return tmp;
 
         } else if (tmp.find("/") == 0){
             if (link.port == "443") tmp = "https://" + link.host + tmp;
-            else tmp = "http://" + link.host + tmp;
+            else 
+                tmp = "http://" + link.host + tmp;
             return tmp;
         }
         return "0";
@@ -354,7 +359,6 @@ private:
     atomic_int check = 0;
 
     atomic_bool end_network = false;
-
 };
 
 
@@ -402,7 +406,6 @@ int main(int argc, char **argv) {
     unsigned network_threads = vm["network_threads"].as<unsigned>();
     unsigned parser_threads = vm["parser_threads"].as<unsigned>();
     string output = vm["output"].as<string>();
-
 
     crawler a;
     a.start(url, depth, network_threads, parser_threads, output);
