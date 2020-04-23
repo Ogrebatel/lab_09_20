@@ -19,7 +19,7 @@
 #include <queue>
 #include <thread>
 #include <vector>
-#include <stdatomic.h>
+#include <atomic>
 
 using tcp = boost::asio::ip::tcp;
 namespace ssl = boost::asio::ssl;
@@ -33,7 +33,7 @@ using std::thread;
 using std::cout;
 using std::endl;
 using std::mutex;
-using std::atomic_int;
+using std::atomic_uint;
 using std::atomic_bool;
 
 
