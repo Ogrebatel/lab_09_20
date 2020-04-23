@@ -131,9 +131,9 @@ public:
         {
             address addr = create_address(link);
             string ending = download_page(addr);
-            GumboOutput* output = gumbo_parse(ending.c_str());
-            search_for_links(output->root, addr);
-            gumbo_destroy_output(&kGumboDefaultOptions, output);
+            GumboOutput* Output = gumbo_parse(ending.c_str());
+            search_for_links(Output->root, addr);
+            gumbo_destroy_output(&kGumboDefaultOptions, Output);
 
             to_search_images_mutex.lock();
             to_search_images.emplace(ending, addr);
@@ -150,9 +150,9 @@ public:
     int consumer(const task &page){
         try
         {
-            GumboOutput* output = gumbo_parse(page.html.c_str());
-            search_for_images(output->root, page);
-            gumbo_destroy_output(&kGumboDefaultOptions, output);
+            GumboOutput* Output = gumbo_parse(page.html.c_str());
+            search_for_images(Output->root, page);
+            gumbo_destroy_output(&kGumboDefaultOptions, Output);
         }
         catch (std::exception const& e)
         {
