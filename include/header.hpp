@@ -100,8 +100,9 @@ public:
             {
                 future_storing.swap(links_to_download);
                 check = 0;
-            } else 
+            } else {
                 while (check != 0){}
+            }
         }
         end_network = true;
     }
@@ -232,15 +233,17 @@ private:
         if (tmp.find("http") == 0){
             return tmp;
         } else if (tmp.find("//") == 0) {
-            if (link.port == "443") tmp = "https:" + tmp;
-            else {
+            if (link.port == "443") {
+                tmp = "https:" + tmp;
+            } else {
                tmp = "http:" + tmp;
             }
             return tmp;
 
         } else if (tmp.find("/") == 0){
-            if (link.port == "443") tmp = "https://" + link.host + tmp;
-            else {
+            if (link.port == "443") {
+                tmp = "https://" + link.host + tmp;
+            } else {
                 tmp = "http://" + link.host + tmp;
             }
             return tmp;
@@ -252,15 +255,17 @@ private:
         if (tmp.find("http") == 0){
             return tmp;
         } else if (tmp.find("//") == 0) {
-            if (link.port == "443") tmp = "https:" + tmp;
-            else {
+            if (link.port == "443") {
+                tmp = "https:" + tmp;
+            } else {
                 tmp = "http:" + tmp;
             }
             return tmp;
 
         } else if (tmp.find("/") == 0){
-            if (link.port == "443") tmp = "https://" + link.host + tmp;
-            else {
+            if (link.port == "443") {
+                tmp = "https://" + link.host + tmp;
+            } else {
                 tmp = "http://" + link.host + tmp;
             }
             return tmp;
