@@ -19,6 +19,7 @@
 #include <queue>
 #include <thread>
 #include <vector>
+#include <stdatomic.h>
 
 using tcp = boost::asio::ip::tcp;
 namespace ssl = boost::asio::ssl;
