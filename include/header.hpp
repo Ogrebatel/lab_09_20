@@ -55,10 +55,6 @@ struct task{
 
 class crawler{
 public:
-    crawler()
-    {
-
-    }
 
     void start(const string &link, unsigned depth,
             unsigned network_threads, unsigned parser_threads,
@@ -98,7 +94,6 @@ public:
                 to_download_mutex.unlock();
                 //
                 producer(link);
-
             }
             cout << "AAAAAAAAAAAAAAAAAAA";
             ++check;
@@ -108,7 +103,6 @@ public:
                 check = 0;
             }
             else while(check != 0){}
-
         }
         end_network = true;
     }
