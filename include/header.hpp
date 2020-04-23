@@ -13,7 +13,7 @@
 #include <boost/log/utility/setup/console.hpp>
 #include <boost/program_options.hpp>
 #include <gumbo.h>
-#include "root_certificates.h"
+#include <root_certificates.h>
 #include <cstdlib>
 #include <string>
 #include <queue>
@@ -233,14 +233,16 @@ private:
             return tmp;
         } else if (tmp.find("//") == 0) {
             if (link.port == "443") tmp = "https:" + tmp;
-            else 
+            else {
                tmp = "http:" + tmp;
+            }
             return tmp;
 
         } else if (tmp.find("/") == 0){
             if (link.port == "443") tmp = "https://" + link.host + tmp;
-            else 
+            else {
                 tmp = "http://" + link.host + tmp;
+            }
             return tmp;
         }
         return "0";
@@ -251,14 +253,16 @@ private:
             return tmp;
         } else if (tmp.find("//") == 0) {
             if (link.port == "443") tmp = "https:" + tmp;
-            else 
+            else {
                 tmp = "http:" + tmp;
+            }
             return tmp;
 
         } else if (tmp.find("/") == 0){
             if (link.port == "443") tmp = "https://" + link.host + tmp;
-            else 
+            else {
                 tmp = "http://" + link.host + tmp;
+            }
             return tmp;
         }
         return "0";
@@ -290,7 +294,7 @@ private:
         result.port = get_port_from_link(link);
         result.target = get_target_from_link(link);
         return result;
-    };
+    }
 
     bool add_link_for_search(const string &link)
     {
@@ -316,7 +320,6 @@ private:
         auto check = std::find(output.begin(),
                 output.end(), link);
         if (check == output.end()) {
-
             output.push_back(link);
             output_mutex.unlock();
             return true;
