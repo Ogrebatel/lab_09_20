@@ -137,6 +137,6 @@ private:
     atomic_uint check = 0;
 
     atomic_bool end_network = false;
-}
+};
 
 #endif // INCLUDE_HEADER_HPP_
